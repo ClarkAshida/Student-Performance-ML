@@ -1,15 +1,12 @@
-import { Button } from "@/components/ui/button"
-import './App.css'
+import React from "react";
+import AppRoutes from "./routes/AppRoutes";
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-      <Button>Click me</Button>
-      </div>
-    </>
-  )
-}
+    <div>
+      <AppRoutes />
+    </div>
+  );
+};
 
-export default App
+export default App;

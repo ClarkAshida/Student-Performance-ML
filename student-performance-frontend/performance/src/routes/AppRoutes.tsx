@@ -1,0 +1,22 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../pages/Home";
+import Classroom from "@/pages/Classroom";
+import Navbar from "@/components/navbar/Navbar";
+import Student from "@/pages/Student";
+
+const AppRoutes: React.FC = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/turma/:id" element={<Classroom />} />
+        <Route path="/aluno/:id" element={<Student />} />
+        <Route path="*" element={<div>Not Found</div>} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default AppRoutes;

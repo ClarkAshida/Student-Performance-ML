@@ -1,0 +1,50 @@
+{
+	// Define o Prettier como o formatador padrão
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+
+	// Ativa a formatação automática ao salvar
+	"editor.formatOnSave": true,
+
+	// Ativa a formatação automática ao salvar para arquivos JavaScript
+	"[javascript]": {
+		"editor.formatOnSave": true
+	},
+
+	// Ativa a formatação automática ao salvar para arquivos JavaScript React (JSX)
+	"[javascriptreact]": {
+		"editor.formatOnSave": true
+	},
+
+	// Ativa a formatação automática ao salvar para arquivos TypeScript
+	"[typescript]": {
+		"editor.formatOnSave": true
+	},
+
+	// Ativa a formatação automática ao salvar para arquivos TypeScript React (TSX)
+	"[typescriptreact]": {
+		"editor.formatOnSave": true
+	},
+
+	// Configura ações de código para corrigir automaticamente todos os problemas do ESLint ao salvar
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+
+	// Mostra sempre o status do ESLint na barra de status do editor
+	"eslint.alwaysShowStatus": true,
+
+	// Configura o ESLint para validar os seguintes tipos de arquivos:
+	"eslint.validate": [
+		"javascript", // JavaScript
+		"javascriptreact", // JavaScript React (JSX)
+		"typescript", // TypeScript
+		"typescriptreact" // TypeScript React (TSX)
+	],
+
+	// Configurações do Prettier para formatação:
+	"prettier.useTabs": true, // Usar tabs ao invés de espaços
+	"prettier.jsxSingleQuote": false, // Não usar aspas simples em JSX
+	"prettier.tabWidth": 2, // Largura da tabulação definida para 2 espaços
+	"prettier.arrowParens": "avoid", // Evitar parênteses em arrow functions com um único parâmetro
+	"prettier.singleQuote": true // Usar aspas simples ao invés de duplas
+}
