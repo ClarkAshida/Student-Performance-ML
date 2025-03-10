@@ -10,7 +10,11 @@ import {
   ClassRoomDetails,
   ClassRoomStudents,
 } from "../types/classRooms";
-import { StudentData } from "@/types/students";
+import {
+  StudentData,
+  StudentRegisterData,
+  StudentResponse,
+} from "@/types/students";
 import { classRoomService } from "../services/classRoomApi";
 import { studentService } from "@/services/studentApi";
 
@@ -20,6 +24,7 @@ interface ApiContextType {
   fetchClassRoomDetails: (id: number) => Promise<ClassRoomDetails | null>;
   fetchClassRoomStudents: (id: number) => Promise<ClassRoomStudents[] | null>;
   fetchStudentDetails: (id: number) => Promise<StudentData | null>;
+  registerStudent: (data: StudentRegisterData) => Promise<StudentResponse>;
 }
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
@@ -69,6 +74,16 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const registerStudent = async (data: StudentRegisterData) => {
+    try {
+      const response = await studentService.registerStudent(data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao cadastrar aluno:", error);
+      throw error;
+    }
+  };
+
   useEffect(() => {
     fetchClassRooms();
   }, []);
@@ -79,6 +94,7 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
     fetchClassRoomDetails,
     fetchClassRoomStudents,
     fetchStudentDetails,
+    registerStudent,
   };
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

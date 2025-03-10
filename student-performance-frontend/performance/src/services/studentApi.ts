@@ -1,3 +1,4 @@
+import { StudentRegisterData } from "@/types/students";
 import axios from "axios";
 
 // Criando uma instância do Axios com configuração padrão
@@ -16,6 +17,15 @@ export const studentService = {
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar detalhes do aluno:", error);
+      throw error;
+    }
+  },
+  registerStudent: async (data: StudentRegisterData) => {
+    try {
+      const response = await api.post("alunos/", data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao cadastrar aluno:", error);
       throw error;
     }
   },
