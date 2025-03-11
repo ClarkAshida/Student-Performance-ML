@@ -60,6 +60,7 @@ const Classroom: React.FC = () => {
               <th>ID</th>
               <th>Name</th>
               <th>Gender</th>
+              <th>Age</th>
               <th>Classes</th>
               <th>Attendance</th>
               <th>Previous Scores</th>
@@ -78,6 +79,7 @@ const Classroom: React.FC = () => {
                     <Link to={`/aluno/${student.id}`}>{student.name}</Link>
                   </td>
                   <td>{student.gender}</td>
+                  <td>{student.age}</td>
                   <td>{student.classes}</td>
                   <td>{student.attendance}</td>
                   <td>{student.previous_scores}</td>

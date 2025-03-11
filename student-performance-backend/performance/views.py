@@ -38,13 +38,14 @@ class ClassroomViewSet(viewsets.ModelViewSet):
     def students(self, request, pk=None):
         """
         Retorna todos os alunos de uma turma específica pelo ID da turma.
-        Exemplo: GET /turmas/1/students/ retorna os alunos da turma 1.
+        Exemplo: GET /turmas/1/alunos/ retorna os alunos da turma 1.
         """
         classroom = get_object_or_404(Classroom, pk=pk)
         students = Student.objects.filter(classes=classroom)
         data = [
             {
                 "id": student.id,
+                "age": student.age,
                 "name": student.name,
                 "gender": student.gender,
                 "classes": student.classes.id,

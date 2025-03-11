@@ -29,6 +29,7 @@ const Student: React.FC = () => {
       <h1>Student Information</h1>
       <p>ID: {student.id}</p>
       <p>Name: {student.name}</p>
+      <p>Age: {student.age}</p>
       <p>Gender: {student.gender}</p>
       <p>Learning Disability: {student.learning_desability ? "Yes" : "No"}</p>
       <p>Parental Involvement: {student.parental_involvement}</p>

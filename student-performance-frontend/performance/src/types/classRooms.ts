@@ -18,6 +18,7 @@ export interface ClassRoomDetails extends ClassRoom {
 
 export interface ClassRoomStudents {
   id: number;
+  age: number;
   name: string;
   gender: "M" | "F";
   classes: number;

@@ -264,7 +264,7 @@ const RegisterStudent: React.FC = () => {
             <option value="">Selecione</option>
             <option value="High School">Ensino Médio</option>
             <option value="College">Faculdade</option>
-            <option value="Graduate">Pós-graduação</option>
+            <option value="Postgraduate">Pós-graduação</option>
           </select>
         </div>
 

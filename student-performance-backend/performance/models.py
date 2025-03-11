@@ -9,8 +9,8 @@ class Classroom(models.Model):
 class Student(models.Model):
     # Dados Pessoais
     name = models.CharField(max_length=100)
-    age = models.IntegerField
     gender = models.CharField(max_length=1, choices=[("M", "Male"), ("F", "Female"), ("O", "Other")])
+    age = models.IntegerField()
     learning_desability = models.BooleanField(default=False)
     # Turma
     classes = models.ForeignKey(Classroom, on_delete=models.CASCADE)
