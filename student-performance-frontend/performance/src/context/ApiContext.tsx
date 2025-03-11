@@ -8,6 +8,7 @@ import React, {
 import {
   ClassRoom,
   ClassRoomDetails,
+  ClassRoomRegisterData,
   ClassRoomStudents,
 } from "../types/classRooms";
 import {
@@ -23,6 +24,8 @@ interface ApiContextType {
   setClassRooms: (classRooms: ClassRoom[]) => void;
   fetchClassRoomDetails: (id: number) => Promise<ClassRoomDetails | null>;
   fetchClassRoomStudents: (id: number) => Promise<ClassRoomStudents[] | null>;
+  registerClassRoom: (data: ClassRoomRegisterData) => Promise<ClassRoom>;
+  deleteClassRoom: (id: number) => Promise<ClassRoom>;
   fetchStudentDetails: (id: number) => Promise<StudentData | null>;
   registerStudent: (data: StudentRegisterData) => Promise<StudentResponse>;
   deleteStudent: (id: number) => Promise<StudentData>;
@@ -67,6 +70,29 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
       return null;
     }
   };
+
+  const registerClassRoom = async (data: ClassRoomRegisterData) => {
+    try {
+      const response = await classRoomService.registerClassRoom(data);
+      return response;
+    } catch (error) {
+      console.error("Erro ao cadastrar sala de aula:", error);
+      throw error;
+    }
+  };
+
+  const deleteClassRoom = async (id: number) => {
+    try {
+      const response = await classRoomService.deleteClassRoom(id);
+      console.log("Sala deletada com sucesso:", response);
+      return response;
+    } catch (error) {
+      console.error("Erro ao deletar sala de aula:", error);
+      throw error;
+    }
+  };
+
+  //----------------- Funções para alunos -----------------
 
   const fetchStudentDetails = async (
     id: number
@@ -119,6 +145,8 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
     setClassRooms,
     fetchClassRoomDetails,
     fetchClassRoomStudents,
+    registerClassRoom,
+    deleteClassRoom,
     fetchStudentDetails,
     registerStudent,
     deleteStudent,

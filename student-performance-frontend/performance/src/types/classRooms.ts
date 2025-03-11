@@ -29,3 +29,7 @@ export interface ClassRoomStudents {
   peer_influence: string;
   final_result: string;
 }
+
+export interface ClassRoomRegisterData {
+  code: string;
+}

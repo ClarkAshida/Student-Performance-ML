@@ -40,7 +40,7 @@ export const studentService = {
   },
   updateStudent: async (id: number, data: StudentRegisterData) => {
     try {
-      const response = await api.put(`alunos/${id}`, data);
+      const response = await api.put(`alunos/${id}/`, data);
       return response.data;
     } catch (error) {
       console.error("Erro ao atualizar aluno:", error);
