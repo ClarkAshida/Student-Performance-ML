@@ -1,44 +1,33 @@
-import React, { useState } from "react";
-import { useApi } from "../context/ApiContext";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useApi } from "@/context/ApiContext";
 import { StudentRegisterData } from "@/types/students";
 import axios from "axios";
 
-const RegisterStudent: React.FC = () => {
-  const { registerStudent, classRooms } = useApi(); // Pegando a função do contexto
+const UpdateStudent: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { fetchStudentDetails, updateStudent, classRooms } = useApi();
 
-  // Estado para armazenar os dados do formulário
-  const [formData, setFormData] = useState<StudentRegisterData>({
-    name: "",
-    age: 0,
-    gender: "",
-    learning_desability: false,
-    classes: 0,
-    parental_involvement: "",
-    access_to_resources: "",
-    motivation_level: "",
-    family_income: "",
-    teacher_quality: "",
-    peer_influence: "",
-    parental_education: "",
-    distance_from_home: "",
-    hours_studied: 0,
-    attendance: 0,
-    extracurricular_activities: 0,
-    sleep_hours: 0,
-    previous_scores: 0,
-    internet_access: false,
-    tutoring_sessions: 0,
-    school_type: "",
-    physical_activity: 0,
-  });
+  const [formData, setFormData] = useState<StudentRegisterData | null>(null);
 
-  // Função para atualizar os valores do formulário
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const studentData = await fetchStudentDetails(Number(id));
+        setFormData(studentData);
+      } catch (error) {
+        console.error("Erro ao buscar dados do aluno", error);
+      }
+    };
+
+    fetchStudentData();
+  }, [id, fetchStudentDetails]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    if (!formData) return;
     const { name, value, type } = e.target;
-
-    // Converte para número se necessário
     const newValue =
       type === "number"
         ? parseFloat(value)
@@ -46,22 +35,15 @@ const RegisterStudent: React.FC = () => {
           ? (e.target as HTMLInputElement).checked
           : value;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: newValue,
-    }));
+    setFormData((prev) => (prev ? { ...prev, [name]: newValue } : prev));
   };
 
-  // Função para enviar o formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData) return;
     try {
-      const response = await registerStudent(formData);
-      const result =
-        response.final_result === "Pass" ? "Aprovado ✅" : "Reprovado ❌";
-      alert(
-        `O Estudante ${response.name} foi cadastrado com sucesso! O Resultado da predição é: ${result}`
-      );
+      await updateStudent(Number(id), formData);
+      alert("Dados do aluno atualizados com sucesso!");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         const errorMessages = Object.entries(error.response.data)
@@ -70,13 +52,17 @@ const RegisterStudent: React.FC = () => {
               `${field}: ${(messages as string[]).join(", ")}`
           )
           .join("\n");
-        alert(`Erro ao cadastrar estudante:\n${errorMessages}`);
+        alert(`Erro ao atualizar estudante:\n${errorMessages}`);
       } else {
-        alert("Erro ao cadastrar estudante.");
+        alert("Erro ao atualizar estudante.");
       }
-      console.error("Erro ao cadastrar estudante:", error);
+      console.error("Erro ao atualizar estudante:", error);
     }
   };
+
+  if (!formData) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-md">
@@ -432,4 +418,4 @@ const RegisterStudent: React.FC = () => {
   );
 };
 
-export default RegisterStudent;
+export default UpdateStudent;

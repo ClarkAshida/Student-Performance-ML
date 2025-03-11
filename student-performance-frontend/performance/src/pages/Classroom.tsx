@@ -5,7 +5,8 @@ import { useApi } from "../context/ApiContext";
 import { ClassRoomDetails, ClassRoomStudents } from "../types/classRooms";
 
 const Classroom: React.FC = () => {
-  const { fetchClassRoomDetails, fetchClassRoomStudents } = useApi();
+  const { fetchClassRoomDetails, fetchClassRoomStudents, deleteStudent } =
+    useApi();
   const { id } = useParams();
   const [classRoom, setClassRoom] = useState<ClassRoomDetails | null>(null);
   const [students, setStudents] = useState<ClassRoomStudents[] | null>(null);
@@ -84,6 +85,14 @@ const Classroom: React.FC = () => {
                   <td>{student.motivation_level}</td>
                   <td>{student.peer_influence}</td>
                   <td>{student.final_result}</td>
+                  <td>
+                    <button onClick={() => deleteStudent(student.id)}>
+                      Delete
+                    </button>
+                  </td>
+                  <td>
+                    <Link to={`/editar-aluno/${student.id}`}>Edit</Link>
+                  </td>
                 </tr>
               ))}
           </tbody>

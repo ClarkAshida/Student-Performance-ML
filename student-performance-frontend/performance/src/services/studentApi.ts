@@ -29,6 +29,24 @@ export const studentService = {
       throw error;
     }
   },
+  deleteStudent: async (id: number) => {
+    try {
+      const response = await api.delete(`alunos/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao deletar aluno:", error);
+      throw error;
+    }
+  },
+  updateStudent: async (id: number, data: StudentRegisterData) => {
+    try {
+      const response = await api.put(`alunos/${id}`, data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao atualizar aluno:", error);
+      throw error;
+    }
+  },
 };
 
 export default api;

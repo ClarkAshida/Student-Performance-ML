@@ -25,6 +25,11 @@ interface ApiContextType {
   fetchClassRoomStudents: (id: number) => Promise<ClassRoomStudents[] | null>;
   fetchStudentDetails: (id: number) => Promise<StudentData | null>;
   registerStudent: (data: StudentRegisterData) => Promise<StudentResponse>;
+  deleteStudent: (id: number) => Promise<StudentData>;
+  updateStudent: (
+    id: number,
+    data: StudentRegisterData
+  ) => Promise<StudentData>;
 }
 
 const ApiContext = createContext<ApiContextType | undefined>(undefined);
@@ -77,9 +82,30 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
   const registerStudent = async (data: StudentRegisterData) => {
     try {
       const response = await studentService.registerStudent(data);
-      return response.data;
+      return response;
     } catch (error) {
       console.error("Erro ao cadastrar aluno:", error);
+      throw error;
+    }
+  };
+
+  const deleteStudent = async (id: number) => {
+    try {
+      const response = await studentService.deleteStudent(id);
+      console.log("Aluno deletado com sucesso:", response);
+      return response;
+    } catch (error) {
+      console.error("Erro ao deletar aluno:", error);
+      throw error;
+    }
+  };
+
+  const updateStudent = async (id: number, data: StudentRegisterData) => {
+    try {
+      const response = await studentService.updateStudent(id, data);
+      return response;
+    } catch (error) {
+      console.error("Erro ao atualizar aluno:", error);
       throw error;
     }
   };
@@ -95,6 +121,8 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
     fetchClassRoomStudents,
     fetchStudentDetails,
     registerStudent,
+    deleteStudent,
+    updateStudent,
   };
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

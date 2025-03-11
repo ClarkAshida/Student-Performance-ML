@@ -28,17 +28,17 @@ export interface StudentData {
 export interface StudentRegisterData {
   name: string;
   age: number;
-  gender: "M" | "F" | "O";
+  gender: "M" | "F" | "O" | "";
   learning_desability: boolean;
   classes: number;
-  parental_involvement: "Low" | "Medium" | "High";
-  access_to_resources: "Low" | "Medium" | "High";
-  motivation_level: "Low" | "Medium" | "High";
-  family_income: "Low" | "Medium" | "High";
-  teacher_quality: "Low" | "Medium" | "High";
-  peer_influence: "Negative" | "Neutral" | "Positive";
-  parental_education: "High School" | "College" | "Postgraduate";
-  distance_from_home: "Near" | "Moderate" | "Far";
+  parental_involvement: "Low" | "Medium" | "High" | "";
+  access_to_resources: "Low" | "Medium" | "High" | "";
+  motivation_level: "Low" | "Medium" | "High" | "";
+  family_income: "Low" | "Medium" | "High" | "";
+  teacher_quality: "Low" | "Medium" | "High" | "";
+  peer_influence: "Negative" | "Neutral" | "Positive" | "";
+  parental_education: "High School" | "College" | "Postgraduate" | "";
+  distance_from_home: "Near" | "Moderate" | "Far" | "";
   hours_studied: number;
   attendance: number;
   extracurricular_activities: number;
@@ -46,7 +46,7 @@ export interface StudentRegisterData {
   previous_scores: number;
   internet_access: boolean;
   tutoring_sessions: number;
-  school_type: "Public" | "Private";
+  school_type: "Public" | "Private" | "";
   physical_activity: number;
 }
 

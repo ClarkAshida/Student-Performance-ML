@@ -6,17 +6,17 @@ const Navbar: React.FC = () => {
     <nav className="bg-black text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
-          MyApp
+          Student Performance
         </Link>
         <div className="flex space-x-4">
           <Link to="/" className="hover:text-gray-400 transition">
-            Home
+            Turmas
           </Link>
-          <Link to="/about" className="hover:text-gray-400 transition">
-            About
-          </Link>
-          <Link to="/contact" className="hover:text-gray-400 transition">
-            Contact
+          <Link
+            to="/cadastrar-aluno"
+            className="hover:text-gray-400 transition"
+          >
+            Cadastrar Aluno
           </Link>
         </div>
       </div>

@@ -5,6 +5,7 @@ import Classroom from "@/pages/Classroom";
 import Navbar from "@/components/navbar/Navbar";
 import Student from "@/pages/Student";
 import RegisterStudent from "@/pages/RegisterStudent";
+import UpdateStudent from "@/pages/updateStudent";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/turma/:id" element={<Classroom />} />
         <Route path="/aluno/:id" element={<Student />} />
         <Route path="/cadastrar-aluno" element={<RegisterStudent />} />
+        <Route path="/editar-aluno/:id" element={<UpdateStudent />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
     </Router>
