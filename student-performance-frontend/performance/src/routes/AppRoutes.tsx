@@ -5,7 +5,7 @@ import Classroom from "@/pages/Classroom";
 import Navbar from "@/components/navbar/Navbar";
 import Student from "@/pages/Student";
 import RegisterStudent from "@/pages/RegisterStudent";
-import UpdateStudent from "@/pages/updateStudent";
+import UpdateStudent from "@/pages/UpdateStudent";
 
 const AppRoutes: React.FC = () => {
   return (
