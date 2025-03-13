@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'setup.settings')
+settings_module = "setup.deployment" if 'FRONTEND_URL' in os.environ else 'setup.settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
 application = get_wsgi_application()
