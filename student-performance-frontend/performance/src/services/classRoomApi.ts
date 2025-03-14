@@ -1,9 +1,14 @@
 import { ClassRoomRegisterData } from "@/types/classRooms";
 import axios from "axios";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+const baseURL = isDevelopment
+  ? import.meta.env.VITE_API_BASE_URL_LOCAL
+  : import.meta.env.VITE_API_BASE_URL_PROD;
+
 // Criando uma instância do Axios com configuração padrão
 const api = axios.create({
-  baseURL: "http://localhost:8000/api/", // Altere para a URL do seu backend
+  baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },

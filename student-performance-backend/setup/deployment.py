@@ -2,8 +2,8 @@ import os
 from .settings import *
 from .settings import BASE_DIR
 
-ALLOWED_HOSTS = [os.environ['FRONTEND_URL']]
-CSRF_TRUSTED_ORIGINS = ['https://'+os.environ['FRONTEND_URL']]
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
+CSRF_TRUSTED_ORIGINS = ['https://'+os.environ['WEBSITE_HOSTNAME']]
 DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -20,7 +20,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://'+os.environ['FRONTEND_URL'],
+    'https://black-island-0d475420f.6.azurestaticapps.net/',
 ]
 
 STORAGES = {
