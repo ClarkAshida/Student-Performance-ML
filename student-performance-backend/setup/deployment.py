@@ -2,10 +2,9 @@ import os
 from .settings import *
 from .settings import BASE_DIR
 
-ALLOWED_HOSTS = [os.environ.get('WEBSITE_HOSTNAME', ''), 'student-performance-backend-bhaxaefmckdtduh0.brazilsouth-01.azurewebsites.net']
+ALLOWED_HOSTS = ['student-performance-backend-bhaxaefmckdtduh0.brazilsouth-01.azurewebsites.net']
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{os.environ.get('WEBSITE_HOSTNAME', '')}",
-    "https://student-performance-backend-bhaxaefmckdtduh0.brazilsouth-01.azurewebsites.net"
+    "https://student-performance-backend-bhaxaefmckdtduh0.brazilsouth-01.azurewebsites.net", 'https://black-island-0d475420f.6.azurestaticapps.net/',
 ]
 DEBUG = False
 SECRET_KEY = os.environ['SECRET_KEY']
