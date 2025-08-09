@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 const Home: React.FC = () => {
-  const { classRooms, registerClassRoom } = useApi();
+  const { classRooms, registerClassRoom, setClassRooms } = useApi();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [classRoomCode, setClassRoomCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,9 @@ const Home: React.FC = () => {
 
     setIsLoading(true);
     try {
-      await registerClassRoom({ code: classRoomCode.trim() });
+      const newClassRoom = await registerClassRoom({ code: classRoomCode.trim() });
+      // Adiciona a nova turma à lista existente
+      setClassRooms([...classRooms, newClassRoom]);
       setClassRoomCode("");
       setIsModalOpen(false);
       // Aqui você pode adicionar um toast de sucesso se tiver
