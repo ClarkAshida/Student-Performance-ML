@@ -3,17 +3,18 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "success" | "warning" | "error" | "info";
+  variant?: "default" | "secondary" | "success" | "warning" | "error" | "info";
   size?: "sm" | "md" | "lg";
   className?: string;
 }
 
 const variantClasses = {
-  default: "bg-gray-100 text-gray-700 border-gray-200",
+  default: "bg-jade-100 text-jade-700 border-jade-200",
+  secondary: "bg-gray-100 text-text-body border-gray-200",
   success: "bg-success/10 text-success-dark border-success/20",
   warning: "bg-warning/10 text-warning-dark border-warning/20",
-  error: "bg-error/10 text-error-dark border-error/20",
-  info: "bg-brand-primary/10 text-brand-primary border-brand-primary/20",
+  error: "bg-danger/10 text-danger-dark border-danger/20",
+  info: "bg-text-primary/10 text-text-primary border-text-primary/20",
 };
 
 const sizeClasses = {

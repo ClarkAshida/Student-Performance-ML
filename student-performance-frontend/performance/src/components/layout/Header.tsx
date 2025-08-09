@@ -1,95 +1,62 @@
 import React from "react";
-import { Search, Bell, Settings, User } from "lucide-react";
+import { User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 interface HeaderProps {
   title: string;
   subtitle?: string;
+  onToggleSidebar?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  subtitle,
+  onToggleSidebar,
+}) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b border-gray-100 shadow-sm">
+    <header className=" z-40 h-16 bg-surface-card border-b border-gray-200 shadow-soft">
       <div className="flex items-center justify-between h-full px-6">
-        {/* Left Section - Logo and Title */}
+        {/* Left Section - Page Title and Menu Toggle */}
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">SP</span>
-            </div>
-            <div>
-              <h1 className="font-heading font-semibold text-lg text-gray-700">
-                {title}
-              </h1>
-              {subtitle && <p className="text-sm text-gray-400">{subtitle}</p>}
-            </div>
+          {onToggleSidebar && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggleSidebar}
+              className="text-text-secondary hover:bg-gray-100 hover:text-text-body md:hidden"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          )}
+          <div>
+            <h1 className="font-heading font-semibold text-h3 text-text-primary">
+              {title}
+            </h1>
+            {subtitle && (
+              <p className="text-body-sm text-text-secondary font-body">
+                {subtitle}
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Center Section - Search Bar */}
-        <div className="flex-1 max-w-md mx-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-            <Input
-              type="text"
-              placeholder="Buscar alunos, turmas..."
-              className="pl-10 bg-gray-50 border-gray-200 focus:bg-white"
-            />
+        {/* Right Section - User Profile and Actions */}
+        <div className="flex items-center space-x-4">
+          {/* User Profile */}
+
+          {/* Profile Picture */}
+          <div className="w-8 h-8 bg-jade-500 rounded-full flex items-center justify-center ring-2 ring-jade-100">
+            <User className="h-4 w-4 text-white" />
           </div>
-        </div>
-
-        {/* Right Section - Actions and User */}
-        <div className="flex items-center space-x-3">
-          {/* Notifications */}
-          <Button variant="ghost" size="sm" className="relative">
-            <Bell className="h-5 w-5 text-gray-500" />
-            <span className="absolute -top-1 -right-1 h-4 w-4 bg-error text-white text-xs rounded-full flex items-center justify-center">
-              3
-            </span>
-          </Button>
-
-          {/* Settings */}
-          <Button variant="ghost" size="sm">
-            <Settings className="h-5 w-5 text-gray-500" />
-          </Button>
-
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex items-center space-x-2"
-              >
-                <div className="w-8 h-8 bg-brand-jade rounded-full flex items-center justify-center">
-                  <User className="h-4 w-4 text-white" />
-                </div>
-                <span className="font-body text-sm text-gray-700">
-                  Professor
-                </span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                Meu Perfil
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                Configurações
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-error">Sair</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* User Name */}
+          <div className="text-left hidden sm:block">
+            <p className="font-body font-medium text-text-body text-sm">
+              Prof. João Silva
+            </p>
+            <p className="font-body text-text-secondary text-xs">
+              Administrador
+            </p>
+          </div>
         </div>
       </div>
     </header>

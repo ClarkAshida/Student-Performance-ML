@@ -17,31 +17,37 @@ const Layout: React.FC<LayoutProps> = ({ children, title, subtitle }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header title={title} subtitle={subtitle} />
+    <div className="min-h-screen bg-surface-primary flex">
+      {/* Sidebar - Fixed to the left */}
       <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
 
-      <main
+      {/* Main Content Area */}
+      <div
         className={cn(
-          "pt-16 transition-all duration-300 ease-in-out",
+          "flex-1 flex flex-col transition-all duration-300 ease-in-out",
           sidebarCollapsed ? "ml-20" : "ml-64"
         )}
       >
-        <div className="p-6">{children}</div>
-      </main>
+        {/* Header - Inside main content */}
+        <Header
+          title={title}
+          subtitle={subtitle}
+          onToggleSidebar={toggleSidebar}
+        />
 
-      {/* Footer */}
-      <footer
-        className={cn(
-          "bg-white border-t border-gray-100 py-4 transition-all duration-300 ease-in-out",
-          sidebarCollapsed ? "ml-20" : "ml-64"
-        )}
-      >
-        <div className="px-6 text-center text-sm text-gray-400">
-          © 2025 StudentPro - Sistema de Gerenciamento e Predição de
-          Performance Estudantil. Todos os direitos reservados.
-        </div>
-      </footer>
+        {/* Main Content */}
+        <main className="flex-1 pt-16 pb-16">
+          <div className="p-6 font-body min-h-full">{children}</div>
+        </main>
+
+        {/* Footer - Fixed at bottom */}
+        <footer className="bg-surface-card border-t border-gray-200 py-4 shadow-soft">
+          <div className="px-6 text-center text-sm text-text-secondary font-body">
+            © 2025 StudentPro - Sistema de Predição de Performance Estudantil.
+            Todos os direitos reservados.
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
